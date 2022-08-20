@@ -4,17 +4,46 @@
 
 h1 {
     text-align: center;
-  }
-  
+}
+
+ol {
+    font-weight: bold;
+}
+
+li::before {
+    content: "";
+    margin-left: 10px;
+}
+
+#result {
+    color: rgb(0, 89, 255);
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+button {
+    background-color: rgb(0, 89, 255);
+    border-style: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+    line-height: 15px;
+    max-width: fit-content;
+    padding: 13px;
+    text-align: center;
+    margin-top: 10px;
+}
 
 .card {
     display: block;
-    background-color:	#FFFFE0;
+    background-color: #FFFFE0;
     border: 1px solid #eceff1;
-    border-radius: 8px;
+    border-radius: 10px;
     box-shadow: rgba(60, 64, 67, 2) 0 1px 2px 0,
-      rgba(60, 64, 67, 0.15) 0 2px 4px 3px;
+        rgba(60, 64, 67, 0.15) 0 2px 4px 3px;
     margin: 60px auto;
     padding: 20px;
     width: 80vw;
-  }
+}
