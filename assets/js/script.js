@@ -17,83 +17,83 @@ var question1 = {
 }
 
 var question2 = {
-    question: "Question #2",
-    option1: "a",
-    option2: "b",
-    option3: "c",
-    option4: "d",
+    question: "What does DOM stand for in JavaScript?",
+    option1: "Document Object Model",
+    option2: "Digital Online Memory",
+    option3: "Digital Only Module",
+    option4: "Disply Object Model",
     correctAnswer: "option1"
 }
 
 var question3 = {
-    question: "Question #3",
-    option1: "a",
-    option2: "b",
-    option3: "c",
-    option4: "d",
+    question: "JavaScript booleans can have one of two values: ____ or _____.",
+    option1: "yes, no",
+    option2: "true, false",
+    option3: "on, off",
+    option4: "high, low",
     correctAnswer: "option2"
 }
 
 var question4 = {
-    question: "Question #4",
-    option1: "a",
-    option2: "b",
-    option3: "c",
-    option4: "d",
+    question: "What is the JSON method used to convert an object to a string?",
+    option1: "stringize()",
+    option2: "stringify()",
+    option3: "stringing()",
+    option4: "stringiness()",
     correctAnswer: "option2"
 }
 
 var question5 = {
-    question: "Question #5",
-    option1: "a",
-    option2: "b",
-    option3: "c",
-    option4: "d",
+    question: "What is the term used to describe an event on a target element triggering up to the parents of the target.",
+    option1: "Looping",
+    option2: "Layering",
+    option3: "Surfacing",
+    option4: "Bubbling",
     correctAnswer: "option4"
 }
 
 var question6 = {
-    question: "Question #6",
-    option1: "a",
-    option2: "b",
-    option3: "c",
-    option4: "d",
+    question: "The _____________ method attaches an event handler to the specified element.",
+    option1: "addEventListener()",
+    option2: "addEventClick()",
+    option3: "mouseDownEvent()",
+    option4: "requestEvent()",
     correctAnswer: "option1"
 }
 
 var question7 = {
-    question: "Question #7",
-    option1: "a",
-    option2: "b",
-    option3: "c",
-    option4: "d",
+    question: "The 3 types of popup boxes in JavaScript are _____ , _______ , and ______ .",
+    option1: "alert, confirm, and prompt",
+    option2: "left, center, and right",
+    option3: "upper, lower, and middle",
+    option4: "alpha, beta, gamma",
     correctAnswer: "option1"
 }
 
 var question8 = {
-    question: "Question #8",
-    option1: "a",
-    option2: "b",
-    option3: "c",
-    option4: "d",
-    correctAnswer: "option2"
+    question: "The first index in an array is the  _______ index.",
+    option1: "initial",
+    option2: "primary",
+    option3: "0",
+    option4: "main",
+    correctAnswer: "option3"
 }
 
 var question9 = {
-    question: "Question #9",
-    option1: "a",
-    option2: "b",
-    option3: "c",
-    option4: "d",
+    question: "The ______ scope includes variables that can be accessed from anywhere in a JavaScript program ",
+    option1: "Local",
+    option2: "Global",
+    option3: "Block",
+    option4: "Function",
     correctAnswer: "option2"
 }
 
 var question10 = {
-    question: "Question #10",
-    option1: "a",
-    option2: "b",
-    option3: "c",
-    option4: "d",
+    question: "Array _________ methods operate on every array item.",
+    option1: "value",
+    option2: "function",
+    option3: "debugging",
+    option4: "iteration",
     correctAnswer: "option4"
 }
 
@@ -111,7 +111,7 @@ function init() {
     timeEl.textContent = "";
     secondsLeft = 150;
 
-    setInterval(timer, 1000);
+    // setInterval(timer, 1000);
 
     function timer() {
         var minutes = Math.floor(secondsLeft / 60);
@@ -131,8 +131,6 @@ function init() {
         };
 
     }
-
-    timer();
 
     function quiz() {
 
