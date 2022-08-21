@@ -19,7 +19,8 @@ var question2 = {
     option1: "a",
     option2: "b",
     option3: "c",
-    option4: "d"
+    option4: "d",
+    correctAnswer: "option1"
 }
 
 var question3 = {
@@ -27,7 +28,8 @@ var question3 = {
     option1: "a",
     option2: "b",
     option3: "c",
-    option4: "d"
+    option4: "d",
+    correctAnswer: "option2"
 }
 
 var question4 = {
@@ -35,7 +37,8 @@ var question4 = {
     option1: "a",
     option2: "b",
     option3: "c",
-    option4: "d"
+    option4: "d",
+    correctAnswer: "option2"
 }
 
 var question5 = {
@@ -43,25 +46,28 @@ var question5 = {
     option1: "a",
     option2: "b",
     option3: "c",
-    option4: "d"
+    option4: "d",
+    correctAnswer: "option4"
 }
 
+var i = 0;
 var questionBank = [question1, question2, question3, question4, question5]
 var currentQuestionObject = "question"
-var correctAnswer = question1.correctAnswer;
+var correctAnswer = "";
 var chosenAnswer = "";
-var i = 0;
-
-console.log(correctAnswer);
 
 function init() {
 
-
+    function askQuestion (){
+    result.textContent = "";
     currentQuestion.textContent = questionBank[i].question;
     option1.textContent = questionBank[i].option1;
     option2.textContent = questionBank[i].option2;
     option3.textContent = questionBank[i].option3;
     option4.textContent = questionBank[i].option4;
+    correctAnswer = questionBank[i].correctAnswer;
+    console.log(correctAnswer);
+    }
 
     function getAnswer() {
 
@@ -82,6 +88,7 @@ function init() {
         i++;
         }
         console.log(i);
+        setTimeout(askQuestion, 1000);
     }
     )
 
@@ -89,6 +96,11 @@ function init() {
         console.log("You chose answer 'B'");
         chosenAnswer = "option2";
         getAnswer();
+        if (i < 10) {
+        i++;
+        }
+        console.log(i);
+        setTimeout(askQuestion, 1000);
     }
     )
 
@@ -96,6 +108,11 @@ function init() {
         console.log("You chose answer 'C'");
         chosenAnswer = "option3";
         getAnswer();
+        if (i < 10) {
+        i++;
+        }
+        console.log(i);
+        setTimeout(askQuestion, 1000);
     }
     )
 
@@ -103,9 +120,15 @@ function init() {
         console.log("You chose answer 'D'");
         chosenAnswer = "option4";
         getAnswer();
+        if (i < 10) {
+        i++;
+        }
+        console.log(i);
+        setTimeout(askQuestion, 1000);
     }
     )
     console.log(i)
+    askQuestion();
 }
 
 
