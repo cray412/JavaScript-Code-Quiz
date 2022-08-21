@@ -103,15 +103,16 @@ var wrongSound = new Audio("./assets/sounds/Wrong.mp3");
 var rightSound = new Audio("./assets/sounds/Right.mp3");
 function init() {
 
-    // function randomizeQuestion(array) {
-    //     for (var j = array.length - 1; j > 0; j--){
-    //         var n = Math.floor(Math.random() * (j + 1));
-    //         var temp = array[j];
-    //         array[j] = array[n];
-    //         array[n] = temp;
-    //     }
-    //     return array;
-    // }
+    function randomizeQuestion() {
+        for (var j = questionBank.length - 1; j > 0; j--){
+            var n = Math.floor(Math.random() * (j + 1));
+            var temp = questionBank[j];
+            questionBank[j] = questionBank[n];
+            questionBank[n] = temp;
+        }
+    }
+
+    randomizeQuestion();
 
     function askQuestion() {
         result.textContent = "";
@@ -230,5 +231,7 @@ function init() {
     console.log(i)
     askQuestion();
 }
+
+console.log(questionBank);
 
 init();
