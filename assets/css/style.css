@@ -22,6 +22,13 @@ li::before {
     font-size: 30px;
 }
 
+#complete {
+    color: rgb(0, 89, 255);
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+}
+
 button {
     background-color: rgb(0, 89, 255);
     border-style: none;
