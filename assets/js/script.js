@@ -96,11 +96,22 @@ var question10 = {
 }
 var i = 0;
 var questionBank = [question1, question2, question3, question4, question5, question6, question7, question8, question9, question10];
-var currentQuestionObject = "question"
+var currentQuestionObject = "question";
 var correctAnswer = "";
 var chosenAnswer = "";
-
+var wrongSound = new Audio("./assets/sounds/Wrong.mp3");
+var rightSound = new Audio("./assets/sounds/Right.mp3");
 function init() {
+
+    // function randomizeQuestion(array) {
+    //     for (var j = array.length - 1; j > 0; j--){
+    //         var n = Math.floor(Math.random() * (j + 1));
+    //         var temp = array[j];
+    //         array[j] = array[n];
+    //         array[n] = temp;
+    //     }
+    //     return array;
+    // }
 
     function askQuestion() {
         result.textContent = "";
@@ -117,12 +128,26 @@ function init() {
         console.log(correctAnswer);
     }
 
+    function playWrong() {
+        wrongSound.pause();
+        wrongSound = new Audio("./assets/sounds/Wrong.mp3");
+        wrongSound.play();
+    }
+
+     function playRight() {
+        rightSound.pause();
+        rightSound = new Audio("./assets/sounds/Right.mp3");
+        rightSound.play();
+    }
+
     function getAnswer() {
 
         if (chosenAnswer === correctAnswer) {
+            playRight();
             result.textContent = "CORRECT!";
         }
         else {
+            playWrong();
             result.textContent = "INCORRECT!";
         }
     }
@@ -150,7 +175,7 @@ function init() {
         setTimeout(askQuestion, 1000);
         }
         else {
-            setTimeout(quizFinished, 1000);
+            setTimeout(quizFinished, 2000);
         }
     }
     )
@@ -166,7 +191,7 @@ function init() {
         setTimeout(askQuestion, 1000);
         }
         else {
-            setTimeout(quizFinished, 1000);
+            setTimeout(quizFinished, 2000);
         }
     }
     )
@@ -182,7 +207,7 @@ function init() {
         setTimeout(askQuestion, 1000);
         }
         else {
-            setTimeout(quizFinished, 1000);
+            setTimeout(quizFinished, 2000);
         }
     }
     )
@@ -198,14 +223,12 @@ function init() {
         setTimeout(askQuestion, 1000);
         }
         else {
-            setTimeout(quizFinished, 1000);
+            setTimeout(quizFinished, 2000);
         }
     }
     )
     console.log(i)
     askQuestion();
 }
-
-
 
 init();
