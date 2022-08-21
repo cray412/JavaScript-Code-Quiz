@@ -29,6 +29,19 @@ li::before {
     font-size: 30px;
 }
 
+#time {
+    text-align: right;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#startBtn {
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+}
+
 button {
     background-color: rgb(0, 89, 255);
     border-style: none;

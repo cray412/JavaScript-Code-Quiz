@@ -1,9 +1,11 @@
 var currentQuestion = document.querySelector("#questionField");
+var start = document.querySelector("startBtn");
 var option1 = document.querySelector("#answer1");
 var option2 = document.querySelector("#answer2");
 var option3 = document.querySelector("#answer3");
 var option4 = document.querySelector("#answer4");
 var result = document.querySelector("#result");
+var timeEl = document.querySelector("#time");
 
 var question1 = {
     question: "What does CSS stand for?",
@@ -94,144 +96,152 @@ var question10 = {
     option4: "d",
     correctAnswer: "option4"
 }
+
 var i = 0;
 var questionBank = [question1, question2, question3, question4, question5, question6, question7, question8, question9, question10];
-// var currentQuestionObject = "question";
 var correctAnswer = "";
 var chosenAnswer = "";
 var wrongSound = new Audio("./assets/sounds/Wrong.mp3");
 var rightSound = new Audio("./assets/sounds/Right.mp3");
+
 function init() {
 
-    function randomizeQuestion() {
-        for (var j = questionBank.length - 1; j > 0; j--){
-            var n = Math.floor(Math.random() * (j + 1));
-            var temp = questionBank[j];
-            questionBank[j] = questionBank[n];
-            questionBank[n] = temp;
-        }
-    }
+    // start.textContent = "START";
 
-    randomizeQuestion();
+    timeEl.textContent = "";
+    secondsLeft = 150;
 
-    function askQuestion() {
-        result.textContent = "";
-        currentQuestion.textContent = ((i + 1) + ". " + questionBank[i].question);
-        option1.textContent = questionBank[i].option1;
-        option2.textContent = questionBank[i].option2;
-        option3.textContent = questionBank[i].option3;
-        option4.textContent = questionBank[i].option4;
-        correctAnswer = questionBank[i].correctAnswer;
-        document.querySelector("#answer1").disabled = false;
-        document.querySelector("#answer2").disabled = false;
-        document.querySelector("#answer3").disabled = false;
-        document.querySelector("#answer4").disabled = false;
-        console.log(correctAnswer);
-    }
+    setInterval(timer, 1000);
 
-    function playWrong() {
-        wrongSound.pause();
-        wrongSound = new Audio("./assets/sounds/Wrong.mp3");
-        wrongSound.play();
-    }
-
-     function playRight() {
-        rightSound.pause();
-        rightSound = new Audio("./assets/sounds/Right.mp3");
-        rightSound.play();
-    }
-
-    function getAnswer() {
-
-        if (chosenAnswer === correctAnswer) {
-            playRight();
-            result.textContent = "CORRECT!";
+    function timer() {
+        var minutes = Math.floor(secondsLeft / 60);
+        var seconds = secondsLeft % 60;
+        if (seconds < 10) {
+            seconds = "0" + seconds;
         }
         else {
-            playWrong();
-            result.textContent = "INCORRECT!";
+            seconds = seconds;
         }
+
+        timeEl.textContent = "Time remaining: " + minutes + ":" + seconds;
+        secondsLeft--;
+
+        if (secondsLeft === 0) {
+            window.location.href = "./timesup.html"
+        };
+
     }
 
-    function disableButtons(){
-        
-        document.querySelector("#answer1").disabled = true;
-        document.querySelector("#answer2").disabled = true;
-        document.querySelector("#answer3").disabled = true;
-        document.querySelector("#answer4").disabled = true;
+    timer();
+
+    function quiz() {
+
+        function randomizeQuestion() {
+            for (var j = questionBank.length - 1; j > 0; j--) {
+                var n = Math.floor(Math.random() * (j + 1));
+                var temp = questionBank[j];
+                questionBank[j] = questionBank[n];
+                questionBank[n] = temp;
+            }
+        }
+
+        randomizeQuestion();
+
+        function askQuestion() {
+            result.textContent = "";
+            currentQuestion.textContent = ((i + 1) + ". " + questionBank[i].question);
+            option1.textContent = questionBank[i].option1;
+            option2.textContent = questionBank[i].option2;
+            option3.textContent = questionBank[i].option3;
+            option4.textContent = questionBank[i].option4;
+            correctAnswer = questionBank[i].correctAnswer;
+            document.querySelector("#answer1").disabled = false;
+            document.querySelector("#answer2").disabled = false;
+            document.querySelector("#answer3").disabled = false;
+            document.querySelector("#answer4").disabled = false;
+            console.log(correctAnswer);
+        }
+
+        function playWrong() {
+            wrongSound.play();
+        }
+
+        function playRight() {
+            rightSound.play();
+        }
+
+        function getAnswer() {
+
+            if (chosenAnswer === correctAnswer) {
+                playRight();
+                result.textContent = "CORRECT!";
+            }
+            else {
+                playWrong();
+                result.textContent = "INCORRECT!";
+                secondsLeft = secondsLeft - 15;
+            }
+        }
+
+        function disableButtons() {
+
+            document.querySelector("#answer1").disabled = true;
+            document.querySelector("#answer2").disabled = true;
+            document.querySelector("#answer3").disabled = true;
+            document.querySelector("#answer4").disabled = true;
+        }
+
+        function checkAnswer() {
+            disableButtons();
+            getAnswer();
+            if (i < questionBank.length - 1) {
+                i++;
+                console.log(i);
+                setTimeout(askQuestion, 1000);
+            }
+            else {
+                setTimeout(quizFinished, 2000);
+            }
+        }
+
+        function quizFinished() {
+            window.location.href = "./finished.html"
+        }
+
+        option1.addEventListener("click", function () {
+            console.log("You chose answer 'A'");
+            chosenAnswer = "option1";
+            checkAnswer();
+        }
+        )
+
+        option2.addEventListener("click", function () {
+            console.log("You chose answer 'B'");
+            chosenAnswer = "option2";
+            checkAnswer();
+        }
+        )
+
+        option3.addEventListener("click", function () {
+            console.log("You chose answer 'C'");
+            chosenAnswer = "option3";
+            checkAnswer();
+        }
+        )
+
+        option4.addEventListener("click", function () {
+            console.log("You chose answer 'D'");
+            chosenAnswer = "option4";
+            checkAnswer();
+        }
+        )
+        console.log(i)
+        askQuestion();
     }
 
-    function quizFinished(){
-        window.location.href = "./finished.html"
-    }
+    console.log(questionBank);
 
-    option1.addEventListener("click", function () {
-        disableButtons();
-        console.log("You chose answer 'A'");
-        chosenAnswer = "option1";
-        getAnswer();
-        if (i < questionBank.length - 1) {
-            i++;
-        console.log(i);
-        setTimeout(askQuestion, 1000);
-        }
-        else {
-            setTimeout(quizFinished, 2000);
-        }
-    }
-    )
-
-    option2.addEventListener("click", function () {
-        disableButtons();
-        console.log("You chose answer 'B'");
-        chosenAnswer = "option2";
-        getAnswer();
-        if (i < questionBank.length - 1) {
-            i++;
-        console.log(i);
-        setTimeout(askQuestion, 1000);
-        }
-        else {
-            setTimeout(quizFinished, 2000);
-        }
-    }
-    )
-
-    option3.addEventListener("click", function () {
-        disableButtons();
-        console.log("You chose answer 'C'");
-        chosenAnswer = "option3";
-        getAnswer();
-        if (i < questionBank.length - 1) {
-            i++;
-        console.log(i);
-        setTimeout(askQuestion, 1000);
-        }
-        else {
-            setTimeout(quizFinished, 2000);
-        }
-    }
-    )
-
-    option4.addEventListener("click", function () {
-        disableButtons();
-        console.log("You chose answer 'D'");
-        chosenAnswer = "option4";
-        getAnswer();
-        if (i < questionBank.length - 1) {
-            i++;
-        console.log(i);
-        setTimeout(askQuestion, 1000);
-        }
-        else {
-            setTimeout(quizFinished, 2000);
-        }
-    }
-    )
-    console.log(i)
-    askQuestion();
+    quiz();
 }
-
-console.log(questionBank);
 
 init();
