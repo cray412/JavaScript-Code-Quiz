@@ -56,61 +56,58 @@ console.log(correctAnswer);
 
 function init() {
 
-    function beginQuiz() {
 
-        currentQuestion.textContent = questionBank[i].question;
-        option1.textContent = questionBank[i].option1;
-        option2.textContent = questionBank[i].option2;
-        option3.textContent = questionBank[i].option3;
-        option4.textContent = questionBank[i].option4;
+    currentQuestion.textContent = questionBank[i].question;
+    option1.textContent = questionBank[i].option1;
+    option2.textContent = questionBank[i].option2;
+    option3.textContent = questionBank[i].option3;
+    option4.textContent = questionBank[i].option4;
 
-        function getAnswer() {
+    function getAnswer() {
 
-            if (chosenAnswer === correctAnswer) {
-                result.textContent = "CORRECT!";
-            }
-            else {
-                result.textContent = "INCORRECT!";
-
-            }
+        if (chosenAnswer === correctAnswer) {
+            result.textContent = "CORRECT!";
         }
-
-        option1.addEventListener("click", function () {
-            console.log("You chose answer 'A'");
-            chosenAnswer = "option1";
-            getAnswer();
-            i++;
+        else {
+            result.textContent = "INCORRECT!";
 
         }
-        )
-
-        option2.addEventListener("click", function () {
-            console.log("You chose answer 'B'");
-            chosenAnswer = "option2";
-            getAnswer();
-            i++;
-        }
-        )
-
-        option3.addEventListener("click", function () {
-            console.log("You chose answer 'C'");
-            chosenAnswer = "option3";
-            getAnswer();
-            i++;
-        }
-        )
-
-        option4.addEventListener("click", function () {
-            console.log("You chose answer 'D'");
-            chosenAnswer = "option4";
-            getAnswer();
-            i++;
-        }
-        )
-        console.log(i)
     }
-    beginQuiz();
+
+    option1.addEventListener("click", function () {
+        console.log("You chose answer 'A'");
+        chosenAnswer = "option1";
+        getAnswer();
+        if (i < 10) {
+        i++;
+        }
+        console.log(i);
+    }
+    )
+
+    option2.addEventListener("click", function () {
+        console.log("You chose answer 'B'");
+        chosenAnswer = "option2";
+        getAnswer();
+    }
+    )
+
+    option3.addEventListener("click", function () {
+        console.log("You chose answer 'C'");
+        chosenAnswer = "option3";
+        getAnswer();
+    }
+    )
+
+    option4.addEventListener("click", function () {
+        console.log("You chose answer 'D'");
+        chosenAnswer = "option4";
+        getAnswer();
+    }
+    )
+    console.log(i)
 }
+
 
 
 init();
