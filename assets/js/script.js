@@ -6,7 +6,7 @@ var option4 = document.querySelector("#answer4");
 var result = document.querySelector("#result");
 
 var question1 = {
-    question: "1. What does CSS stand for?",
+    question: "What does CSS stand for?",
     option1: "Cyber Security System",
     option2: "Computer Screen Standards",
     option3: "Cascading Style Sheet",
@@ -15,7 +15,7 @@ var question1 = {
 }
 
 var question2 = {
-    question: "2. Question #2",
+    question: "Question #2",
     option1: "a",
     option2: "b",
     option3: "c",
@@ -24,7 +24,7 @@ var question2 = {
 }
 
 var question3 = {
-    question: "3. Question #3",
+    question: "Question #3",
     option1: "a",
     option2: "b",
     option3: "c",
@@ -33,7 +33,7 @@ var question3 = {
 }
 
 var question4 = {
-    question: "4. Question #4",
+    question: "Question #4",
     option1: "a",
     option2: "b",
     option3: "c",
@@ -42,7 +42,7 @@ var question4 = {
 }
 
 var question5 = {
-    question: "5. Question #5",
+    question: "Question #5",
     option1: "a",
     option2: "b",
     option3: "c",
@@ -51,7 +51,7 @@ var question5 = {
 }
 
 var question6 = {
-    question: "6. Question #6",
+    question: "Question #6",
     option1: "a",
     option2: "b",
     option3: "c",
@@ -60,7 +60,7 @@ var question6 = {
 }
 
 var question7 = {
-    question: "7. Question #7",
+    question: "Question #7",
     option1: "a",
     option2: "b",
     option3: "c",
@@ -69,7 +69,7 @@ var question7 = {
 }
 
 var question8 = {
-    question: "8. Question #8",
+    question: "Question #8",
     option1: "a",
     option2: "b",
     option3: "c",
@@ -78,7 +78,7 @@ var question8 = {
 }
 
 var question9 = {
-    question: "9. Question #9",
+    question: "Question #9",
     option1: "a",
     option2: "b",
     option3: "c",
@@ -87,7 +87,7 @@ var question9 = {
 }
 
 var question10 = {
-    question: "10. Question #10",
+    question: "Question #10",
     option1: "a",
     option2: "b",
     option3: "c",
@@ -96,7 +96,7 @@ var question10 = {
 }
 var i = 0;
 var questionBank = [question1, question2, question3, question4, question5, question6, question7, question8, question9, question10];
-var currentQuestionObject = "question";
+// var currentQuestionObject = "question";
 var correctAnswer = "";
 var chosenAnswer = "";
 var wrongSound = new Audio("./assets/sounds/Wrong.mp3");
@@ -116,7 +116,7 @@ function init() {
 
     function askQuestion() {
         result.textContent = "";
-        currentQuestion.textContent = questionBank[i].question;
+        currentQuestion.textContent = ((i + 1) + ". " + questionBank[i].question);
         option1.textContent = questionBank[i].option1;
         option2.textContent = questionBank[i].option2;
         option3.textContent = questionBank[i].option3;
