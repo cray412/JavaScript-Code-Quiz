@@ -46,6 +46,10 @@ li::before {
     justify-content: center;
 }
 
+#questionField {
+    text-align: center;
+}
+
 button {
     background-color: rgb(0, 89, 255);
     border-style: none;

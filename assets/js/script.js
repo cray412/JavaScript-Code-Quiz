@@ -111,7 +111,7 @@ answers.style.display = "none";
 
 function init() {
 
-    currentQuestion.style.display = "block";
+    currentQuestion.setAttribute("style", "display: block; text-align: left");
     answers.style.display = "block";
     start.style.display = "none";
 
