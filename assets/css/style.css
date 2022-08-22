@@ -76,3 +76,12 @@ button {
     width: 80vw;
     height: 470px;
 }
+
+@media screen and (max-width: 992px) {
+    .card {
+        background-color: white;
+        border: none;
+        border-radius: none;
+        box-shadow: none;
+    }
+}

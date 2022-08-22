@@ -165,7 +165,6 @@ function init() {
             document.querySelector("#answer2").disabled = false;
             document.querySelector("#answer3").disabled = false;
             document.querySelector("#answer4").disabled = false;
-            console.log(correctAnswer);
         }
 
         function playWrong() {
@@ -202,7 +201,6 @@ function init() {
             getAnswer();
             if (i < questionBank.length - 1) {
                 i++;
-                console.log(i);
                 setTimeout(askQuestion, 1200);
             }
             else {
@@ -215,37 +213,30 @@ function init() {
         }
 
         option1.addEventListener("click", function () {
-            console.log("You chose answer 'A'");
             chosenAnswer = "option1";
             checkAnswer();
         }
         )
 
         option2.addEventListener("click", function () {
-            console.log("You chose answer 'B'");
             chosenAnswer = "option2";
             checkAnswer();
         }
         )
 
         option3.addEventListener("click", function () {
-            console.log("You chose answer 'C'");
             chosenAnswer = "option3";
             checkAnswer();
         }
         )
 
         option4.addEventListener("click", function () {
-            console.log("You chose answer 'D'");
             chosenAnswer = "option4";
             checkAnswer();
         }
         )
-        console.log(i)
         askQuestion();
     }
-
-    console.log(questionBank);
 
     quiz();
 }
