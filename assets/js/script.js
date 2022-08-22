@@ -1,11 +1,12 @@
 var currentQuestion = document.querySelector("#questionField");
-var start = document.querySelector("startBtn");
+var start = document.querySelector("#startBtn");
 var option1 = document.querySelector("#answer1");
 var option2 = document.querySelector("#answer2");
 var option3 = document.querySelector("#answer3");
 var option4 = document.querySelector("#answer4");
 var result = document.querySelector("#result");
 var timeEl = document.querySelector("#time");
+var answerEl = document.querySelector("#answers");
 
 var question1 = {
     question: "What does CSS stand for?",
@@ -104,14 +105,21 @@ var chosenAnswer = "";
 var wrongSound = new Audio("./assets/sounds/Wrong.mp3");
 var rightSound = new Audio("./assets/sounds/Right.mp3");
 
+currentQuestion.innerHTML = "<br> This quiz is to test you knowledge of JavaScript. <br> You will have 2 and a half minutes to answer 10 questions. <br> you will be penalized 15 seconds for each incorrect answer given. <br> <br> Press 'START' to begin. &nbsp; GOOD LUCK!";
+answers.style.display = "none";
+
+
 function init() {
 
-    // start.textContent = "START";
+    currentQuestion.style.display = "block";
+    answers.style.display = "block";
+    start.style.display = "none";
+
 
     timeEl.textContent = "";
     secondsLeft = 150;
 
-    // setInterval(timer, 1000);
+    setInterval(timer, 1000);
 
     function timer() {
         var minutes = Math.floor(secondsLeft / 60);
@@ -195,10 +203,10 @@ function init() {
             if (i < questionBank.length - 1) {
                 i++;
                 console.log(i);
-                setTimeout(askQuestion, 1000);
+                setTimeout(askQuestion, 1200);
             }
             else {
-                setTimeout(quizFinished, 2000);
+                setTimeout(quizFinished, 1200);
             }
         }
 
@@ -242,4 +250,6 @@ function init() {
     quiz();
 }
 
-init();
+start.textContent = "START";
+
+start.addEventListener("click", init);

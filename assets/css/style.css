@@ -36,10 +36,14 @@ li::before {
 }
 
 #startBtn {
-    text-align: center;
     font-weight: bold;
     font-size: 20px;
     color: white;
+}
+
+#startBtnBox {
+    display: flex;
+    justify-content: center;
 }
 
 button {
@@ -66,4 +70,5 @@ button {
     margin: 60px auto;
     padding: 20px;
     width: 80vw;
+    height: 470px;
 }
