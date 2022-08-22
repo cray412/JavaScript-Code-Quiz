@@ -106,20 +106,24 @@ var wrongSound = new Audio("./assets/sounds/Wrong.mp3");
 var rightSound = new Audio("./assets/sounds/Right.mp3");
 
 currentQuestion.innerHTML = "<br> This quiz is to test you knowledge of JavaScript. <br> You will have 2 and a half minutes to answer 10 questions. <br> you will be penalized 15 seconds for each incorrect answer given. <br> <br> Press 'START' to begin. &nbsp; GOOD LUCK!";
+
 answers.style.display = "none";
 
 
 function init() {
 
+    function hideQuiz() {
     currentQuestion.setAttribute("style", "display: block; text-align: left");
     answers.style.display = "block";
     start.style.display = "none";
+    }
 
+    hideQuiz();
 
     timeEl.textContent = "";
     secondsLeft = 150;
 
-    setInterval(timer, 1000);
+    var timerInterval = setInterval(timer, 1000);
 
     function timer() {
         var minutes = Math.floor(secondsLeft / 60);
@@ -135,6 +139,7 @@ function init() {
         secondsLeft--;
 
         if (secondsLeft === 0) {
+            clearInterval(timerInterval);
             window.location.href = "./timesup.html"
         };
 
@@ -201,15 +206,18 @@ function init() {
             getAnswer();
             if (i < questionBank.length - 1) {
                 i++;
-                setTimeout(askQuestion, 1200);
+                setTimeout(askQuestion, 1000);
             }
             else {
-                setTimeout(quizFinished, 1200);
+                clearInterval(timerInterval);
+                setTimeout(quizFinished, 1000);
             }
         }
 
         function quizFinished() {
-            window.location.href = "./finished.html"
+            currentQuestion.style.display = "none";
+            answers.style.display = "none";
+            result.textContent = "Quiz Completed!";
         }
 
         option1.addEventListener("click", function () {
