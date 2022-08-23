@@ -100,7 +100,7 @@ var question10 = {
     correctAnswer: "option4"
 }
 
-var numberOfQuestions = 10;
+var numberOfQuestions = 5;
 var questionBank = [question1, question2, question3, question4, question5, question6, question7, question8, question9, question10];
 var i = questionBank.length - numberOfQuestions;
 var correctAnswer = "";
@@ -109,8 +109,10 @@ var score = 0;
 var percentage = 0;
 var wrongSound = new Audio("./assets/sounds/Wrong.mp3");
 var rightSound = new Audio("./assets/sounds/Right.mp3");
+var secondsLeft = 110;
+var penalty = 10;
 
-currentQuestion.innerHTML = "<br> This quiz is to test your knowledge of JavaScript. <br> You will have 2 and a half minutes to answer 10 questions. <br> You will be penalized 15 seconds for each incorrect answer given. <br> <br> Press 'START' to begin. &nbsp; GOOD LUCK!";
+currentQuestion.innerHTML = "<br> This quiz is to test your knowledge of JavaScript. <br> You will have " + Math.floor(secondsLeft / 60) + " minutes and " + secondsLeft % 60 + " seconds to answer " + numberOfQuestions + " questions. <br> You will be penalized " + penalty + " seconds for each incorrect answer given. <br> <br> Press 'START' to begin. &nbsp; GOOD LUCK!";
 
 answers.style.display = "none";
 submitEl.style.display = "none";
@@ -120,9 +122,9 @@ timeEl.textContent = "Time remaining: 2:30";
 
 function init() {
 
-    var secondsLeft = 150;
-
     var timerInterval = setInterval(timer, 1000);
+
+    wrongSound.volume = 0.7;
 
     function timeExpired() {
         clearInterval(timerInterval);
@@ -187,7 +189,7 @@ function init() {
 
         function askQuestion() {
             result.textContent = "";
-            currentQuestion.textContent = (((i + 1) - i) + ". " + questionBank[i].question);
+            currentQuestion.textContent = ((i + 1) - (questionBank.length - numberOfQuestions) + ". " + questionBank[i].question);
             option1.textContent = questionBank[i].option1;
             option2.textContent = questionBank[i].option2;
             option3.textContent = questionBank[i].option3;
@@ -214,7 +216,7 @@ function init() {
             else {
                 wrongSound.play();
                 result.textContent = "INCORRECT!";
-                secondsLeft = secondsLeft - 15;
+                secondsLeft = secondsLeft - penalty;
             }
         }
 
