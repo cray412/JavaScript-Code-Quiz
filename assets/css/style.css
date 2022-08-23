@@ -61,8 +61,6 @@ form {
 
 #startBtn {
     font-weight: bold;
-    font-size: 20px;
-    color: white;
 }
 
 #startBtnBox {
@@ -75,7 +73,7 @@ form {
 }
 
 #initials {
-    width: 40%;
+    width: 20%;
     padding: 10px 20px;
     margin: 10px 20px;
     box-sizing: border-box;
@@ -84,9 +82,12 @@ form {
 
   #submit {
     margin: 10px;
+    font-size: 15px;
+    cursor: pointer;
   }
 
-button {
+li button,
+#startBtn {
     background-color: rgb(0, 89, 255);
     border-style: none;
     border-radius: 8px;

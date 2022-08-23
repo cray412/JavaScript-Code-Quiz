@@ -100,7 +100,7 @@ var question10 = {
     correctAnswer: "option4"
 }
 
-var i = 0;
+var i = 9;
 var questionBank = [question1, question2, question3, question4, question5, question6, question7, question8, question9, question10];
 var correctAnswer = "";
 var chosenAnswer = "";
@@ -108,7 +108,7 @@ var wrongSound = new Audio("./assets/sounds/Wrong.mp3");
 var rightSound = new Audio("./assets/sounds/Right.mp3");
 var score = "";
 
-currentQuestion.innerHTML = "<br> This quiz is to test you knowledge of JavaScript. <br> You will have 2 and a half minutes to answer 10 questions. <br> you will be penalized 15 seconds for each incorrect answer given. <br> <br> Press 'START' to begin. &nbsp; GOOD LUCK!";
+currentQuestion.innerHTML = "<br> This quiz is to test your knowledge of JavaScript. <br> You will have 2 and a half minutes to answer 10 questions. <br> You will be penalized 15 seconds for each incorrect answer given. <br> <br> Press 'START' to begin. &nbsp; GOOD LUCK!";
 
 answers.style.display = "none";
 submitEl.style.display = "none";
@@ -130,12 +130,18 @@ function init() {
 
     var timerInterval = setInterval(timer, 1000);
 
+    function getInitials() {
+        initialsInput.style.display = "inline";
+        submitEl.style.display = "inline";
+    }
+
     function timeExpired() {
         clearInterval(timerInterval);
         timeEl.textContent = "Time Expired";
         answers.style.display = "none";
         result.textContent = "Time's Up!";
         currentQuestion.setAttribute("style", "text-align: center");
+        getInitials();
         if (score >= 7) {
             currentQuestion.textContent = "Congratulations! You passed with a score of " + (score * 10) + "%.";
         }
@@ -222,7 +228,7 @@ function init() {
         function checkAnswer() {
             disableButtons();
             getAnswer();
-            if (i < questionBank.length - 1 && secondsLeft > 15) {
+            if (i < questionBank.length - 1 && secondsLeft > 0) {
                 i++;
                 setTimeout(askQuestion, 1000);
             }
@@ -240,8 +246,7 @@ function init() {
             currentQuestion.setAttribute("style", "text-align: center");
             answers.style.display = "none";
             result.textContent = "Quiz Completed!";
-            initialsInput.style.display = "inline";
-            submitEl.style.display = "inline";
+            getInitials();
             console.log(score);
             if (score === 10) {
                 currentQuestion.textContent = "Great Job! You got a perfect score of " + (score * 10) + "%.";
@@ -286,4 +291,4 @@ function init() {
 start.textContent = "START QUIZ";
 
 start.addEventListener("click", init);
-submitEl.addEventListener("click", saveScore);
+// submitEl.addEventListener("click", saveScore);
