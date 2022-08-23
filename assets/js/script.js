@@ -114,13 +114,13 @@ timeEl.textContent = "Time remaining: 2:30";
 
 function init() {
 
-    function hideQuiz() {
+    function showQuiz() {
         currentQuestion.setAttribute("style", "display: block; text-align: left");
         answers.style.display = "block";
         start.style.display = "none";
     }
 
-    hideQuiz();
+    showQuiz();
 
     var secondsLeft = 150;
 
@@ -128,6 +128,7 @@ function init() {
 
     function timeExpired() {
         clearInterval(timerInterval);
+        timeEl.textContent = "Time Expired";
         answers.style.display = "none";
         result.textContent = "Time's Up!";
         currentQuestion.setAttribute("style", "text-align: center");
@@ -217,9 +218,12 @@ function init() {
         function checkAnswer() {
             disableButtons();
             getAnswer();
-            if (i < questionBank.length - 1) {
+            if (i < questionBank.length - 1 && secondsLeft > 15) {
                 i++;
                 setTimeout(askQuestion, 1000);
+            }
+            else if (i < questionBank.length - 1) {
+                timeExpired();
             }
             else {
                 clearInterval(timerInterval);
@@ -273,6 +277,6 @@ function init() {
     quiz();
 }
 
-start.textContent = "START";
+start.textContent = "START QUIZ";
 
 start.addEventListener("click", init);
