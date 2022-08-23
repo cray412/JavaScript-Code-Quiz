@@ -100,15 +100,15 @@ var question10 = {
     correctAnswer: "option4"
 }
 
-var numberOfQuestions = 3;
+var numberOfQuestions = 6;
 var questionBank = [question1, question2, question3, question4, question5, question6, question7, question8, question9, question10];
 var i = questionBank.length - numberOfQuestions;
 var correctAnswer = "";
 var chosenAnswer = "";
-var wrongSound = new Audio("./assets/sounds/Wrong.mp3");
-var rightSound = new Audio("./assets/sounds/Right.mp3");
 var score = 0;
 var percentage = 0;
+var wrongSound = new Audio("./assets/sounds/Wrong.mp3");
+var rightSound = new Audio("./assets/sounds/Right.mp3");
 
 currentQuestion.innerHTML = "<br> This quiz is to test your knowledge of JavaScript. <br> You will have 2 and a half minutes to answer 10 questions. <br> You will be penalized 15 seconds for each incorrect answer given. <br> <br> Press 'START' to begin. &nbsp; GOOD LUCK!";
 
@@ -187,7 +187,7 @@ function init() {
 
         function askQuestion() {
             result.textContent = "";
-            currentQuestion.textContent = ((i + 1) + ". " + questionBank[i].question);
+            currentQuestion.textContent = (((i + 1) - i) + ". " + questionBank[i].question);
             option1.textContent = questionBank[i].option1;
             option2.textContent = questionBank[i].option2;
             option3.textContent = questionBank[i].option3;
@@ -199,27 +199,20 @@ function init() {
             document.querySelector("#answer4").disabled = false;
         }
 
-        function playWrong() {
-            wrongSound.play();
-        }
-
-        function playRight() {
-            rightSound.play();
-        }
-
         function getAnswer() {
 
             if (chosenAnswer === correctAnswer) {
-                playRight();
+                rightSound.play();
                 result.textContent = "CORRECT!";
                 score++;
                 percentage = Math.round((score / numberOfQuestions) * 100);
+                console.log(i);
                 console.log(score);
                 console.log(numberOfQuestions);
                 console.log(percentage);
             }
             else {
-                playWrong();
+                wrongSound.play();
                 result.textContent = "INCORRECT!";
                 secondsLeft = secondsLeft - 15;
             }
@@ -255,7 +248,6 @@ function init() {
             answers.style.display = "none";
             result.textContent = "Quiz Completed!";
             getInitials();
-            console.log(percentage);
             if (percentage === 100) {
                 currentQuestion.textContent = "Great Job! You got a perfect score of " + (percentage) + "%.";
             }
