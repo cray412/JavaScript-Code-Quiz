@@ -100,7 +100,7 @@ var question10 = {
     correctAnswer: "option4"
 }
 
-var i = 9;
+var i = 0;
 var questionBank = [question1, question2, question3, question4, question5, question6, question7, question8, question9, question10];
 var correctAnswer = "";
 var chosenAnswer = "";
