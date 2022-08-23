@@ -100,7 +100,7 @@ var question10 = {
     correctAnswer: "option4"
 }
 
-var i = 0;
+var i = 9;
 var questionBank = [question1, question2, question3, question4, question5, question6, question7, question8, question9, question10];
 var correctAnswer = "";
 var chosenAnswer = "";
@@ -118,22 +118,9 @@ timeEl.textContent = "Time remaining: 2:30";
 
 function init() {
 
-    function showQuiz() {
-        currentQuestion.setAttribute("style", "display: block; text-align: left");
-        answers.style.display = "block";
-        start.style.display = "none";
-    }
-
-    showQuiz();
-
     var secondsLeft = 150;
 
     var timerInterval = setInterval(timer, 1000);
-
-    function getInitials() {
-        initialsInput.style.display = "inline";
-        submitEl.style.display = "inline";
-    }
 
     function timeExpired() {
         clearInterval(timerInterval);
@@ -149,6 +136,8 @@ function init() {
             currentQuestion.textContent = "Sorry. You failed with a score of " + (score * 10) + "%.";
         }
     }
+
+    timer();
 
     function timer() {
         var minutes = Math.floor(secondsLeft / 60);
@@ -167,6 +156,19 @@ function init() {
             timeExpired();
         };
     }
+
+    function getInitials() {
+        initialsInput.style.display = "inline";
+        submitEl.style.display = "inline";
+    }
+
+    function showQuiz() {
+        currentQuestion.setAttribute("style", "display: block; text-align: left");
+        answers.style.display = "block";
+        start.style.display = "none";
+    }
+
+    showQuiz();
 
     function quiz() {
 
