@@ -100,7 +100,7 @@ var question10 = {
     correctAnswer: "option4"
 }
 
-var numberOfQuestions = 5;
+var numberOfQuestions = 2;
 var questionBank = [question1, question2, question3, question4, question5, question6, question7, question8, question9, question10];
 var i = questionBank.length - numberOfQuestions;
 var correctAnswer = "";
@@ -109,8 +109,8 @@ var score = 0;
 var percentage = 0;
 var wrongSound = new Audio("./assets/sounds/Wrong.mp3");
 var rightSound = new Audio("./assets/sounds/Right.mp3");
-var secondsLeft = 110;
-var penalty = 10;
+var secondsLeft = 1000;
+var penalty = 990;
 
 currentQuestion.innerHTML = "<br> This quiz is to test your knowledge of JavaScript. <br> You will have " + Math.floor(secondsLeft / 60) + " minutes and " + secondsLeft % 60 + " seconds to answer " + numberOfQuestions + " questions. <br> You will be penalized " + penalty + " seconds for each incorrect answer given. <br> <br> Press 'START' to begin. &nbsp; GOOD LUCK!";
 
@@ -118,7 +118,7 @@ answers.style.display = "none";
 submitEl.style.display = "none";
 submitEl.textContent = "SUBMIT";
 initialsInput.style.display = "none";
-timeEl.textContent = "Time remaining: 2:30";
+timeEl.textContent = "Time remaining: " + Math.floor(secondsLeft / 60) + ":" + secondsLeft % 60;
 
 function init() {
 
