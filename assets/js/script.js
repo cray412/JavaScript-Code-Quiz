@@ -104,26 +104,40 @@ var correctAnswer = "";
 var chosenAnswer = "";
 var wrongSound = new Audio("./assets/sounds/Wrong.mp3");
 var rightSound = new Audio("./assets/sounds/Right.mp3");
+var score = "";
 
 currentQuestion.innerHTML = "<br> This quiz is to test you knowledge of JavaScript. <br> You will have 2 and a half minutes to answer 10 questions. <br> you will be penalized 15 seconds for each incorrect answer given. <br> <br> Press 'START' to begin. &nbsp; GOOD LUCK!";
 
 answers.style.display = "none";
 
+timeEl.textContent = "Time remaining: 2:30";
 
 function init() {
 
     function hideQuiz() {
-    currentQuestion.setAttribute("style", "display: block; text-align: left");
-    answers.style.display = "block";
-    start.style.display = "none";
+        currentQuestion.setAttribute("style", "display: block; text-align: left");
+        answers.style.display = "block";
+        start.style.display = "none";
     }
 
     hideQuiz();
 
-    timeEl.textContent = "";
-    secondsLeft = 150;
+    var secondsLeft = 150;
 
     var timerInterval = setInterval(timer, 1000);
+
+    function timeExpired() {
+        clearInterval(timerInterval);
+        answers.style.display = "none";
+        result.textContent = "Time's Up!";
+        currentQuestion.setAttribute("style", "text-align: center");
+        if (score >= 7) {
+            currentQuestion.textContent = "Congratulations! You passed with a score of " + (score * 10) + "%.";
+        }
+        else {
+            currentQuestion.textContent = "Sorry. You failed with a score of " + (score * 10) + "%.";
+        }
+    }
 
     function timer() {
         var minutes = Math.floor(secondsLeft / 60);
@@ -138,11 +152,9 @@ function init() {
         timeEl.textContent = "Time remaining: " + minutes + ":" + seconds;
         secondsLeft--;
 
-        if (secondsLeft === 0) {
-            clearInterval(timerInterval);
-            window.location.href = "./timesup.html"
+        if (secondsLeft < 0) {
+            timeExpired();
         };
-
     }
 
     function quiz() {
@@ -185,6 +197,7 @@ function init() {
             if (chosenAnswer === correctAnswer) {
                 playRight();
                 result.textContent = "CORRECT!";
+                score++;
             }
             else {
                 playWrong();
@@ -215,9 +228,20 @@ function init() {
         }
 
         function quizFinished() {
-            currentQuestion.style.display = "none";
+            clearInterval(timerInterval);
+            currentQuestion.setAttribute("style", "text-align: center");
             answers.style.display = "none";
             result.textContent = "Quiz Completed!";
+            console.log(score);
+            if (score === 10) {
+                currentQuestion.textContent = "Great Job! You got a perfect score of " + (score * 10) + "%.";
+            }
+            else if (score >= 7) {
+                currentQuestion.textContent = "Congratulations! You passed with a score of " + (score * 10) + "%.";
+            }
+            else {
+                currentQuestion.textContent = "Sorry. You failed with a score of " + (score * 10) + "%.";
+            }
         }
 
         option1.addEventListener("click", function () {
