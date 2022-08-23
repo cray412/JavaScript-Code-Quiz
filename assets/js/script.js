@@ -100,13 +100,15 @@ var question10 = {
     correctAnswer: "option4"
 }
 
-var i = 9;
+var numberOfQuestions = 3;
 var questionBank = [question1, question2, question3, question4, question5, question6, question7, question8, question9, question10];
+var i = questionBank.length - numberOfQuestions;
 var correctAnswer = "";
 var chosenAnswer = "";
 var wrongSound = new Audio("./assets/sounds/Wrong.mp3");
 var rightSound = new Audio("./assets/sounds/Right.mp3");
-var score = "";
+var score = 0;
+var percentage = 0;
 
 currentQuestion.innerHTML = "<br> This quiz is to test your knowledge of JavaScript. <br> You will have 2 and a half minutes to answer 10 questions. <br> You will be penalized 15 seconds for each incorrect answer given. <br> <br> Press 'START' to begin. &nbsp; GOOD LUCK!";
 
@@ -129,11 +131,11 @@ function init() {
         result.textContent = "Time's Up!";
         currentQuestion.setAttribute("style", "text-align: center");
         getInitials();
-        if (score >= 7) {
-            currentQuestion.textContent = "Congratulations! You passed with a score of " + (score * 10) + "%.";
+        if (percentage >= 70) {
+            currentQuestion.textContent = "Congratulations! You passed with a score of " + (percentage) + "%.";
         }
         else {
-            currentQuestion.textContent = "Sorry. You failed with a score of " + (score * 10) + "%.";
+            currentQuestion.textContent = "Sorry. You failed with a score of " + (percentage) + "%.";
         }
     }
 
@@ -211,6 +213,10 @@ function init() {
                 playRight();
                 result.textContent = "CORRECT!";
                 score++;
+                percentage = Math.round((score / numberOfQuestions) * 100);
+                console.log(score);
+                console.log(numberOfQuestions);
+                console.log(percentage);
             }
             else {
                 playWrong();
@@ -249,15 +255,15 @@ function init() {
             answers.style.display = "none";
             result.textContent = "Quiz Completed!";
             getInitials();
-            console.log(score);
-            if (score === 10) {
-                currentQuestion.textContent = "Great Job! You got a perfect score of " + (score * 10) + "%.";
+            console.log(percentage);
+            if (percentage === 100) {
+                currentQuestion.textContent = "Great Job! You got a perfect score of " + (percentage) + "%.";
             }
-            else if (score >= 7) {
-                currentQuestion.textContent = "Congratulations! You passed with a score of " + (score * 10) + "%.";
+            else if (percentage >= 70) {
+                currentQuestion.textContent = "Congratulations! You passed with a score of " + (percentage) + "%.";
             }
             else {
-                currentQuestion.textContent = "Sorry. You failed with a score of " + (score * 10) + "%.";
+                currentQuestion.textContent = "Sorry. You failed with a score of " + (percentage) + "%.";
             }
         }
 
