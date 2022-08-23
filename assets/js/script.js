@@ -7,6 +7,8 @@ var option4 = document.querySelector("#answer4");
 var result = document.querySelector("#result");
 var timeEl = document.querySelector("#time");
 var answerEl = document.querySelector("#answers");
+var initialsInput = document.querySelector("#initials");
+var submitEl = document.querySelector("#submit");
 
 var question1 = {
     question: "What does CSS stand for?",
@@ -109,7 +111,9 @@ var score = "";
 currentQuestion.innerHTML = "<br> This quiz is to test you knowledge of JavaScript. <br> You will have 2 and a half minutes to answer 10 questions. <br> you will be penalized 15 seconds for each incorrect answer given. <br> <br> Press 'START' to begin. &nbsp; GOOD LUCK!";
 
 answers.style.display = "none";
-
+submitEl.style.display = "none";
+submitEl.textContent = "SUBMIT";
+initialsInput.style.display = "none";
 timeEl.textContent = "Time remaining: 2:30";
 
 function init() {
@@ -236,6 +240,8 @@ function init() {
             currentQuestion.setAttribute("style", "text-align: center");
             answers.style.display = "none";
             result.textContent = "Quiz Completed!";
+            initialsInput.style.display = "inline";
+            submitEl.style.display = "inline";
             console.log(score);
             if (score === 10) {
                 currentQuestion.textContent = "Great Job! You got a perfect score of " + (score * 10) + "%.";
@@ -280,3 +286,4 @@ function init() {
 start.textContent = "START QUIZ";
 
 start.addEventListener("click", init);
+submitEl.addEventListener("click", saveScore);
