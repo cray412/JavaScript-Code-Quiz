@@ -8,7 +8,9 @@ var result = document.querySelector("#result");
 var timeEl = document.querySelector("#time");
 var answerEl = document.querySelector("#answers");
 var initialsInput = document.querySelector("#initials");
-var submitEl = document.querySelector("#submit");
+var submitBtn = document.querySelector("#submit");
+var label = document.querySelector("#initials-label");
+var scoreEl = document.querySelector("#scores");
 
 var question1 = {
     question: "What does CSS stand for?",
@@ -100,7 +102,7 @@ var question10 = {
     correctAnswer: "option4"
 }
 
-var numberOfQuestions = 10;
+var numberOfQuestions = 3;
 var questionBank = [question1, question2, question3, question4, question5, question6, question7, question8, question9, question10];
 var i = questionBank.length - numberOfQuestions;
 var correctAnswer = "";
@@ -115,15 +117,15 @@ var penalty = 15;
 currentQuestion.innerHTML = "<br> This quiz is to test your knowledge of JavaScript. <br> You will have " + Math.floor(secondsLeft / 60) + " minutes and " + secondsLeft % 60 + " seconds to answer " + numberOfQuestions + " questions. <br> You will be penalized " + penalty + " seconds for each incorrect answer given. <br> <br> Press 'START' to begin. &nbsp; GOOD LUCK!";
 
 answers.style.display = "none";
-submitEl.style.display = "none";
-submitEl.textContent = "SUBMIT";
+submitBtn.style.display = "none";
+submitBtn.textContent = "SUBMIT";
 initialsInput.style.display = "none";
+label.style.display = "none";
 timeEl.textContent = "Time remaining: " + Math.floor(secondsLeft / 60) + ":" + secondsLeft % 60;
 
 function init() {
 
     var timerInterval = setInterval(timer, 1000);
-
     wrongSound.volume = 0.7;
 
     function timeExpired() {
@@ -162,9 +164,43 @@ function init() {
     }
 
     function getInitials() {
+        //     var initials = localStorage.getItem("initials");
+        //     var grade = localStorage.getItem("score");
+        label.style.display = "inline";
         initialsInput.style.display = "inline";
-        submitEl.style.display = "inline";
+        submitBtn.style.display = "inline";
     }
+
+    function getScore() {
+        var userScore = {
+            initials: initials.value,
+            score: percentage
+        }
+        localStorage.setItem("userScore", JSON.stringify(userScore));
+    }
+
+    function postScore() {
+        var score
+    }
+
+    submitBtn.addEventListener("click", function (event) {
+        event.preventDefault();
+        getScore();
+        postScore();
+
+        // var initials = document.querySelector("#initials").value;
+
+        // localStorage.setItem("initials", initials);
+        // localStorage.setItem("score", percentage);
+
+
+        // location.href = "./highscores.html";
+        // var li = document.createElement("li");
+        // li.textContent = initials + " - " + grade;
+        // scoreEl.appendChild(li);
+
+
+    });
 
     function showQuiz() {
         currentQuestion.setAttribute("style", "display: block; text-align: left");
@@ -293,4 +329,3 @@ function init() {
 start.textContent = "START QUIZ";
 
 start.addEventListener("click", init);
-// submitEl.addEventListener("click", saveScore);

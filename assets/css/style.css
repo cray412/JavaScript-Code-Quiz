@@ -22,9 +22,15 @@ li::before {
 }
 
 form {
-    display:flex;
+    display: flex;
     flex-wrap: wrap;
     justify-content: center;
+}
+
+#initials-label {
+    margin: 5px;
+    padding-top: 10px;
+    font-size: 20px;
 }
 
 #highScores {
@@ -74,17 +80,22 @@ form {
 
 #initials {
     width: 200px;
-    padding: 10px 20px;
-    margin: 10px;
+    padding: 5px 10px;
+    margin: 5px;
     box-sizing: border-box;
     font-size: 20px;
   }
 
   #submit {
-    margin: 10px;
-    font-size: 15px;
+    margin: 5px;
+    font-size: 20px;
     cursor: pointer;
   }
+
+#scores li {
+    margin: 20px 10%;
+    font-size: 20px;
+}  
 
 li button,
 #startBtn {
