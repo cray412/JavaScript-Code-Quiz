@@ -1,3 +1,5 @@
+// query variables
+
 var currentQuestion = document.querySelector("#questionField");
 var start = document.querySelector("#startBtn");
 var option1 = document.querySelector("#answer1");
@@ -10,6 +12,8 @@ var answerEl = document.querySelector("#answers");
 var initialsInput = document.querySelector("#initials");
 var submitBtn = document.querySelector("#submit");
 var label = document.querySelector("#initials-label");
+
+// question objects for bank
 
 var question1 = {
     question: "What does CSS stand for?",
@@ -101,7 +105,9 @@ var question10 = {
     correctAnswer: "option4"
 }
 
-var numberOfQuestions = 10;
+// select number of question (1-10)
+
+var numberOfQuestions = 1;
 var questionBank = [question1, question2, question3, question4, question5, question6, question7, question8, question9, question10];
 var i = questionBank.length - numberOfQuestions;
 var correctAnswer = "";
@@ -110,8 +116,16 @@ var score = 0;
 var percentage = 0;
 var wrongSound = new Audio("./assets/sounds/Wrong.mp3");
 var rightSound = new Audio("./assets/sounds/Right.mp3");
+
+// select time limit (in seconds)
+
 var secondsLeft = 150;
+
+// select time to be penalized for wrong answer (in seconds)
+
 var penalty = 15;
+
+// instruction page setup
 
 currentQuestion.innerHTML = "<br> This quiz is to test your knowledge of JavaScript. <br> You will have " + Math.floor(secondsLeft / 60) + " minutes and " + secondsLeft % 60 + " seconds to answer " + numberOfQuestions + " questions. <br> You will be penalized " + penalty + " seconds for each incorrect answer given. <br> <br> Press 'START' to begin. &nbsp; GOOD LUCK!";
 
@@ -122,7 +136,11 @@ initialsInput.style.display = "none";
 label.style.display = "none";
 timeEl.textContent = "Time remaining: " + Math.floor(secondsLeft / 60) + ":" + secondsLeft % 60;
 
+// quiz functions
+
 function init() {
+
+    // timer function
 
     var timerInterval = setInterval(timer, 1000);
     wrongSound.volume = 0.7;
@@ -162,6 +180,8 @@ function init() {
         };
     }
 
+    // Section for getting initials and score
+
     function getInitials() {
         label.style.display = "inline";
         initialsInput.style.display = "inline";
@@ -169,18 +189,31 @@ function init() {
         initialsInput.textContent = "";
     }
 
+    var highscores = scoreEntry;
+    var scoreEntry = "";
+
+    function saveScores() {
+        // highscores.push(scoreEntry);
+        localStorage.setItem("highscores", scoreEntry);
+        console.log(initials);
+        console.log(highscores);
+        location.href = "./highscores.html";
+    }
 
     submitBtn.addEventListener("click", function (event) {
         event.preventDefault();
 
-        var initials = document.querySelector("#initials").value;
-
+        var initials = initialsInput.value;
+        scoreEntry = initials + " - " + percentage;
         localStorage.setItem("initials", initials);
         localStorage.setItem("score", percentage);
-
-        location.href = "./highscores.html";
+        saveScores();
 
     });
+
+    // End scoring section
+
+    // display quiz
 
     function showQuiz() {
         currentQuestion.setAttribute("style", "display: block; text-align: left");
@@ -189,6 +222,8 @@ function init() {
     }
 
     showQuiz();
+
+    // randomize question bank
 
     function quiz() {
 
@@ -203,6 +238,8 @@ function init() {
 
         randomizeQuestion();
 
+        // show new question and choices
+
         function askQuestion() {
             result.textContent = "";
             currentQuestion.textContent = ((i + 1) - (questionBank.length - numberOfQuestions) + ". " + questionBank[i].question);
@@ -216,6 +253,8 @@ function init() {
             document.querySelector("#answer3").disabled = false;
             document.querySelector("#answer4").disabled = false;
         }
+
+        // check answers
 
         function getAnswer() {
 
@@ -232,6 +271,8 @@ function init() {
             }
         }
 
+        // disable choice buttons after answer selected to avoid double presses
+
         function disableButtons() {
 
             document.querySelector("#answer1").disabled = true;
@@ -239,6 +280,8 @@ function init() {
             document.querySelector("#answer3").disabled = true;
             document.querySelector("#answer4").disabled = true;
         }
+
+        // ask next question, time up, or all questions answered
 
         function checkAnswer() {
             disableButtons();
@@ -256,6 +299,8 @@ function init() {
             }
         }
 
+        // what to do when quiz is finished
+
         function quizFinished() {
             clearInterval(timerInterval);
             currentQuestion.setAttribute("style", "text-align: center");
@@ -272,6 +317,8 @@ function init() {
                 currentQuestion.textContent = "Sorry. You failed with a score of " + (percentage) + "%.";
             }
         }
+
+        // choice button functions
 
         option1.addEventListener("click", function () {
             chosenAnswer = "option1";
