@@ -10,7 +10,6 @@ var answerEl = document.querySelector("#answers");
 var initialsInput = document.querySelector("#initials");
 var submitBtn = document.querySelector("#submit");
 var label = document.querySelector("#initials-label");
-var scoreEl = document.querySelector("#scores");
 
 var question1 = {
     question: "What does CSS stand for?",
@@ -102,7 +101,7 @@ var question10 = {
     correctAnswer: "option4"
 }
 
-var numberOfQuestions = 3;
+var numberOfQuestions = 1;
 var questionBank = [question1, question2, question3, question4, question5, question6, question7, question8, question9, question10];
 var i = questionBank.length - numberOfQuestions;
 var correctAnswer = "";
@@ -164,41 +163,22 @@ function init() {
     }
 
     function getInitials() {
-        //     var initials = localStorage.getItem("initials");
-        //     var grade = localStorage.getItem("score");
         label.style.display = "inline";
         initialsInput.style.display = "inline";
         submitBtn.style.display = "inline";
+        initialsInput.textContent = "";
     }
 
-    function getScore() {
-        var userScore = {
-            initials: initials.value,
-            score: percentage
-        }
-        localStorage.setItem("userScore", JSON.stringify(userScore));
-    }
-
-    function postScore() {
-        var score
-    }
 
     submitBtn.addEventListener("click", function (event) {
         event.preventDefault();
-        getScore();
-        postScore();
 
-        // var initials = document.querySelector("#initials").value;
+        var initials = document.querySelector("#initials").value;
 
-        // localStorage.setItem("initials", initials);
-        // localStorage.setItem("score", percentage);
+        localStorage.setItem("initials", initials);
+        localStorage.setItem("score", percentage);
 
-
-        // location.href = "./highscores.html";
-        // var li = document.createElement("li");
-        // li.textContent = initials + " - " + grade;
-        // scoreEl.appendChild(li);
-
+        location.href = "./highscores.html";
 
     });
 
