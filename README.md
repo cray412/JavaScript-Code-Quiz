@@ -17,9 +17,9 @@ The user is presented with 10 questions to answer in 2 minutes and 30 seconds wi
 
 ## Screenshot/Link
 
-![Password Generator](./assets/images/Code_Quiz_Screenshot.png)
+![JavaScript Code Quiz](./assets/images/Code_Quiz_Screenshot.png)
 
-[Password Generator](https://cray412.github.io/JavaScript-Code-Quiz/)
+[JavaScript Code Quiz](https://cray412.github.io/JavaScript-Code-Quiz/)
 
 ## Credits
 
