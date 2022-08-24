@@ -224,10 +224,6 @@ function init() {
                 result.textContent = "CORRECT!";
                 score++;
                 percentage = Math.round((score / numberOfQuestions) * 100);
-                console.log(i);
-                console.log(score);
-                console.log(numberOfQuestions);
-                console.log(percentage);
             }
             else {
                 wrongSound.play();

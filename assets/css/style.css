@@ -92,7 +92,7 @@ form {
     cursor: pointer;
   }
 
-#scores li {
+#score-list li {
     margin: 20px 10%;
     font-size: 20px;
 }  

@@ -2,26 +2,31 @@ var scoreList = document.querySelector("#score-list");
 
 var initials = localStorage.getItem("initials");
 var score = localStorage.getItem("score");
+var scoreEntry = initials + " - " + score;
+var newScoreList = localStorage.getItem("highscoreList");
+var highscores = [];
 
-var userScores = [];
+highscores.push(scoreEntry);
+
+if (highscores != null) {
+    highscores.push(newScoreList);
+}
+
+var highscoreList = localStorage.setItem("highscoreList", highscores);
 
 function postScores() {
-    scoreList.innerHTML = "";
+    // scoreList.innerHTML = "";
 
 
-    for (var i = 0; i > userScores.length; i++) {
-        var scores = userScores[i];
+    for (var i = 0; i < highscores.length; i++) {
+        // var scores = highscores[i];
 
         var li = document.createElement("li");
-        li.textContent = initials + " - " + score;
+        li.textContent = highscores[i];
         li.setAttribute("data-index", i);
-
         scoreList.appendChild(li);
+
     }
 }
 
-function init() {
-
-var storedScores = JSON.parse(localStorage.getItem())
-
-}
+postScores()
