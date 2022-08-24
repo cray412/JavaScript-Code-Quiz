@@ -18,7 +18,6 @@ li::before {
 #statusBar {
     display: flex;
     justify-content: space-between;
-
 }
 
 form {
@@ -84,18 +83,25 @@ form {
     margin: 5px;
     box-sizing: border-box;
     font-size: 20px;
-  }
+}
 
-  #submit {
+#submit {
     margin: 5px;
     font-size: 20px;
     cursor: pointer;
-  }
+}
+
+#score-list {
+    display: inline-block;
+    align-items: center;
+}
 
 #score-list li {
-    margin: 20px 10%;
-    font-size: 20px;
-}  
+    min-width: 200px;
+    margin: 20px;
+    padding-right: 45px;
+    font-size: 30px;
+}
 
 li button,
 #startBtn {
@@ -128,7 +134,7 @@ li button,
 @media screen and (max-width: 992px) {
 
     body {
-        background-color: #FFFFE0;        
+        background-color: #FFFFE0;
     }
 
     .card {

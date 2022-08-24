@@ -107,7 +107,7 @@ var question10 = {
 
 // select number of question (1-10)
 
-var numberOfQuestions = 10;
+var numberOfQuestions = 1;
 
 var questionBank = [question1, question2, question3, question4, question5, question6, question7, question8, question9, question10];
 var i = questionBank.length - numberOfQuestions;
@@ -190,26 +190,28 @@ function init() {
         initialsInput.textContent = "";
     }
 
-    var highscores = scoreEntry;
-    var scoreEntry = "";
-
-    function saveScores() {
-        // highscores.push(scoreEntry);
-        localStorage.setItem("highscores", scoreEntry);
-        console.log(initials);
-        console.log(highscores);
-        location.href = "./highscores.html";
-    }
-
     submitBtn.addEventListener("click", function (event) {
         event.preventDefault();
 
         var initials = initialsInput.value;
-        scoreEntry = initials + " - " + percentage;
-        localStorage.setItem("initials", initials);
-        localStorage.setItem("score", percentage);
-        saveScores();
 
+        scoreEntry = {
+            initials: initials,
+            score: percentage
+        }
+
+        console.log(scoreEntry);
+
+        var highscores = JSON.parse(localStorage.getItem("highscores"));
+
+        if (!highscores) {
+            highscores = [];
+        }
+
+        highscores.push(scoreEntry);
+
+        localStorage.setItem("highscores", JSON.stringify(highscores));
+        location.href = "./highscores.html";
     });
 
     // End scoring section
