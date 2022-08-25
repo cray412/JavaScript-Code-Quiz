@@ -118,6 +118,11 @@ li button,
     margin-top: 10px;
 }
 
+#score-card{
+    width: 30%;
+    justify-content: center;
+}
+
 .card {
     display: block;
     background-color: #FFFFE0;
